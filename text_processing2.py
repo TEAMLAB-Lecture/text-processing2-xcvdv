@@ -28,15 +28,20 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
+    num_string = ["zero", "one", "two", "three", "four", "five" ,"six", "seven", "eight", "nine"]
+    temp_list = []
+    for c in input_string:
+        if c.isdigit():
+            temp_list.append(num_string[int(c)])
+    digit_string = " ".join(temp_list)
     return digit_string
 
 
 """
-컴퓨터 프로그래밍에 많은 명명 규칙이 있지만, 두 규칙이 특히 흔히 쓰입니다. 
+컴퓨터 프로그래밍에 많은 명명 규칙이 있지만, 두 규칙이 특히 흔히 쓰입니다.
 첫번째로는, 변수 이름을 'underscore'로 나눠준다거나, (ex. under_score_variable)
-두번째로는, 변수 이름을 대소문자 구별해 구분자 (delimiter)없이 쓰는 경우가 있습니다. 
-이 두번째의 경우에는 첫번째 단어는 소문자로, 그 후에 오는 단어들의 첫번째 글자들은 대문자로 쓰입니다 (ex. camelCaseVariable). 
+두번째로는, 변수 이름을 대소문자 구별해 구분자 (delimiter)없이 쓰는 경우가 있습니다.
+이 두번째의 경우에는 첫번째 단어는 소문자로, 그 후에 오는 단어들의 첫번째 글자들은 대문자로 쓰입니다 (ex. camelCaseVariable).
 """
 
 
@@ -64,5 +69,18 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    if '_' not in underscore_str:
+        return underscore_str
+    split_string = underscore_str.split('_')
+    split_string = " ".join(split_string).split()
+    camelcase_str = ""
+    for i in range(len(split_string)):
+        if (i == 0):
+            camelcase_str = split_string[i].lower()
+        else:
+            for j in range(len(split_string[i])):
+                if (j == 0):
+                    camelcase_str += split_string[i][j].upper()
+                else:
+                    camelcase_str += split_string[i][j].lower()
     return camelcase_str
